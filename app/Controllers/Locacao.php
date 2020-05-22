@@ -12,7 +12,7 @@
  * @author     Lucas Gonçalves <luc.tricolor.silva648@gmail.com>
  * @author     Lucas Gusmao <lucas.gusmao.m@gmail.com>
  * @author     Rafael Rodrigues <>
- * @version    0.1
+ * @version    0.2
  * @link       https://github.com/yurisa2/CodeIgniter4QuickStart.git
  */
 
@@ -30,6 +30,20 @@ class Locacao extends Controller
         $modelo = new LocacaoModel;
 
         $data['locacao'] = $modelo->findAll();
+
+        foreach ($data['locacao'] as $key => $value) { 
+        'ID: '.$id = $data['locacao'][$key]['TB_LOCACAO_ID']; 
+          $data['locacao'][$key]['TB_LOCACAO_ID'] = "ID: ".$id;
+
+         
+          $link_alterar = "<a href=form_update/$id>Alterar Registro</a>";
+          $link_delete = "<a href=delete_locacao/$id>Deletar Registro</a>";
+
+         
+          $data['locacao'][$key]['Link_Alterar'] = $link_alterar;
+          $data['locacao'][$key]['Link_Deletar'] = $link_delete;
+        }
+       
 
         echo view('locacao/listar', $data);
     }

@@ -26,7 +26,8 @@ class Cargo extends Controller
         $data['cargo'] = $modelo->findAll();
 
         foreach ($data['cargo'] as $key => $value) { // Vai passar (iterar) todas as posições do array
-          $id = $data['cargo'][$key]['TB_CARGO_ID']; // Pega o ID do passo/registro atual (linha)
+        'ID: '.$id = $data['cargo'][$key]['TB_CARGO_ID']; // Pega o ID do passo/registro atual (linha)
+          $data['cargo'][$key]['TB_CARGO_ID'] = "ID: ".$id;
 
           // Escreve links
           $link_alterar = "<a href=form_update/$id>Alterar Registro</a>";

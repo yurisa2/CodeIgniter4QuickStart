@@ -1,13 +1,17 @@
+<style>
+<?php include 'css/index.css'; ?>
+</style>
 <?php
 /**
- * Form Cadastro da TB_CLIENTE PW3
+ * Lista da TB_CLIENTE PW3
  *
- * @category   Form Cadastro da TB_CLIENTE
+ * @category   Lista da TB_CLIENTE
  * @package    PW3
  * @author     MATHEUS SOUZA FERRO <matheussouzaferro@gmail.com> 
- * @author     AMANDA BATISTA <amandabocardoso0@gmail.com> 
- * @author     VICTOR HENRIQUE <victor.ti.henrique@gmail.com>
+ * @author     AMANDA BATISTA <EMAIL@GMAIL.COM> 
+ * @author     VICTOR HENRIQUE <EMAIL@GMAIL.COM>
  * @version    0.1
+ * @link       https://github.com/yurisa2/CodeIgniter4QuickStart.git
  */
 helper('form');
 

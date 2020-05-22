@@ -11,6 +11,8 @@
 
 $tabela = new \CodeIgniter\View\Table();
 
+$tabela->setHeading('TB_MODELO_ID', 'TB_MODELO_DESC', 'Alterar', 'Excluir');
+
 echo $tabela->generate($modelo);
 
 ?>

@@ -25,6 +25,19 @@ class Automovel extends Controller
 
         $data['automovel'] = $modelo->findAll();
 
+         foreach ($data['automovel'] as $key => $value) { 
+         $id = $data['automovel'][$key]['TB_AUTOMOVEL_ID'];
+          $data['automovel'][$key]['TB_AUTOMOVEL_ID'] = "ID: ".$id;
+         
+         
+          $link_alterar = "<a href=form_update/$id>Alterar Registro</a>";
+          $link_delete = "<a href=delete_automovel/$id>Deletar Registro</a>";
+
+         
+          $data['automovel'][$key]['Link_Alterar'] = $link_alterar;
+          $data['automovel'][$key]['Link_Deletar'] = $link_delete;
+        }
+
         echo view('automovel/index', $data);
     }
 

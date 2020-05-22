@@ -20,7 +20,19 @@ class Modelo extends Controller
     {
         $modelo = new ModelModelo;
 
-        $data['modelo'] = $modelo->findAll();    
+        $data['modelo'] = $modelo->findAll();  
+        
+        foreach($data['modelo'] as $key => $value){
+            $id = $data['modelo'][$key]['TB_MODELO_ID'];
+
+            $data['modelo'][$key]['TB_MODELO_ID'] = "Id: ".$id;
+
+            $link_alterar = "<a href=form_update/$id>ALterar</a>";
+            $link_excluir = "<a href=form_delete/$id>Excluir</a>";
+
+            $data['modelo'][$key]['link_alterar'] = $link_alterar;
+            $data['modelo'][$key]['link_excluir'] = $link_excluir;
+        }
 
         echo view('modelo/index', $data);
 

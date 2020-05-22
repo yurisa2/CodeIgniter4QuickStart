@@ -28,7 +28,8 @@ helper('form');
 
 echo form_open('locacao/update_locacao');
 
-echo form_label('ID');
+echo form_label('ID:'); 
+echo '<br>';
 echo form_input('TB_LOCACAO_ID', $locacao['TB_LOCACAO_ID']);
 echo '<br>';
 

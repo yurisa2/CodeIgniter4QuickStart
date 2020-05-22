@@ -22,6 +22,18 @@ class Marca extends Controller
 
         $data['marca'] = $modelo->findAll();    
 
+        foreach($data['marca'] as $key => $value){
+            $id = $data['marca'][$key]['TB_MARCA_ID'];
+
+            $data['marca'][$key]['TB_MARCA_ID'] = "Id: ".$id;
+
+            $link_alterar = "<a href=form_update/$id>ALterar</a>";
+            $link_excluir = "<a href=form_delete/$id>Excluir</a>";
+
+            $data['marca'][$key]['link_alterar'] = $link_alterar;
+            $data['marca'][$key]['link_excluir'] = $link_excluir;
+        }
+
         echo view('marca/index', $data);
 
     }

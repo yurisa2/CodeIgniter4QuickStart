@@ -11,6 +11,8 @@
 
 $tabela = new \CodeIgniter\View\Table();
 
+$tabela->setHeading('TB_MARCA_ID', 'TB_MARCA_NOME', 'Alterar', 'Excluir');
+
 echo $tabela->generate($marca);
 
 ?>

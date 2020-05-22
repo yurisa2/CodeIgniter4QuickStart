@@ -28,6 +28,18 @@ class funcionario extends Controller
         $modelo = new FuncionarioModel;
 
         $data['funcionario'] = $modelo->findAll();
+        foreach ($data['funcionario'] as $key => $value) { // Vai passar (iterar) todas as posições do array
+          $id = $data['funcionario'][$key]['TB_FUNCIONARIO_ID']; // Pega o ID do passo/registro atual (linha)
+          $data['funcionario'][$key]['TB_FUNCIONARIO_ID'] = "ID: ".$id; 
+          // Escreve links
+          $link_alterar = "<a href=form_update/$id>Alterar Registro</a>";
+          $link_delete = "<a href=delete_cargo/$id>Deletar Registro</a>";
+
+          // Cria itens no array para fazer a coluna ok
+          $data['funcionario'][$key]['Link_Alterar'] = $link_alterar;
+          $data['funcionario'][$key]['Link_Deletar'] = $link_delete;
+        }
+
 
         echo view('funcionario/index', $data);
     }

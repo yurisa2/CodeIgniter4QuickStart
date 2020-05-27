@@ -45,7 +45,7 @@ echo form_input('TB_AUTOMOVEL_STATUS');
 echo '<br>';
 
 echo form_label('Marca');
-echo form_input('TB_MARCA_ID');
+echo form_dropdown('TB_MARCA_ID', $marca);
 echo '<br>';
 
 echo form_label('Modelo');

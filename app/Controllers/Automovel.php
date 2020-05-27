@@ -15,6 +15,7 @@
 namespace App\Controllers;
 
 use App\Models\AutoModel;
+use App\Models\ModelMarca; // Para poder usar a tabela tb_marca aqui tbm
 use CodeIgniter\Controller;
 
 class Automovel extends Controller
@@ -23,27 +24,51 @@ class Automovel extends Controller
     {
         $modelo = new AutoModel;
 
-        $data['automovel'] = $modelo->findAll();
+        // $data['automovel'] = $modelo->findAll(); // Select simples
+        $data['automovel'] = $modelo->tb_auto_completo(); // Método criado, com inner join
 
-         foreach ($data['automovel'] as $key => $value) { 
+        $data['atual'] = 'Listar Automoveis'; // Label do menu
+
+
+         foreach ($data['automovel'] as $key => $value) {
          $id = $data['automovel'][$key]['TB_AUTOMOVEL_ID'];
-          $data['automovel'][$key]['TB_AUTOMOVEL_ID'] = "ID: ".$id;
-         
-         
+          $data['automovel'][$key]['TB_AUTOMOVEL_ID'] = "ID: ".$id; // Adiciona ID na frente do campo TB_AUTOMOVEL_ID
+
+
           $link_alterar = "<a href=form_update/$id>Alterar Registro</a>";
           $link_delete = "<a href=delete_automovel/$id>Deletar Registro</a>";
 
-         
+
           $data['automovel'][$key]['Link_Alterar'] = $link_alterar;
           $data['automovel'][$key]['Link_Deletar'] = $link_delete;
         }
 
+        echo view('menu', $data);
         echo view('automovel/index', $data);
     }
 
     public function form_create() {
+      $data['atual'] = 'Criar Automovel'; // MANDEI O LABEL DO MENU
 
-      echo view('automovel/form_create');
+      $modelo_marca = new ModelMarca; // Peguei a tabela de MARCAS
+
+
+      $data['marca'] = $modelo_marca->findAll(); // Joguei TODOS os valores num array
+
+
+      $array_novo = array(); // Array do dropdown ID da marca => NOME DA MARCA
+      // conforme doc: https://codeigniter4.github.io/userguide/helpers/form_helper.html#form_dropdown
+
+      // Transformar array vindo do findAll() no formato aceito pelo dropdown
+      foreach ($data['marca'] as $key => $value) {
+        $array_novo[$value['TB_MARCA_ID']] = $value['TB_MARCA_NOME'];
+        // Cada registro de MARCA, vira uma linha no array, cuja a chave é TB_MARCA_ID e o valor é TB_MARCA_NOME
+      }
+
+      $data['marca'] = $array_novo; // Aqui eu substituo o array da tabela geral, pelo array construido para o Dropdown
+
+      echo view('menu', $data); // Carrega uma view só para o menu
+      echo view('automovel/form_create', $data); // Carrega a View do create
 
     }
 
@@ -52,11 +77,26 @@ class Automovel extends Controller
 
       $data['automovel'] = $modelo->find($id);
 
+
+ // ------------------- ADICIONAR DROPDOWN DE MARCA IGUAL NO CREATE
+      $modelo_marca = new ModelMarca; // Peguei a tabela de MARCAS
+      $array_novo = array(); // Array do dropdown ID da marca => NOME DA MARCA
+      $data['marca'] = $modelo_marca->findAll(); // Joguei TODOS os valores num array
+      // conforme doc: https://codeigniter4.github.io/userguide/helpers/form_helper.html#form_dropdown
+      // Transformar array vindo do findAll() no formato aceito pelo dropdown
+      foreach ($data['marca'] as $key => $value) {
+        $array_novo[$value['TB_MARCA_ID']] = $value['TB_MARCA_NOME'];
+        // Cada registro de MARCA, vira uma linha no array, cuja a chave é TB_MARCA_ID e o valor é TB_MARCA_NOME
+      }
+      $data['marca'] = $array_novo; // Aqui eu substituo o array da tabela geral, pelo array construido para o Dropdown
+      // -------------------
+
+
       echo view('automovel/form_update', $data);
     }
 
     public function create_automovel() {
-      $modelo = new AutoModel;
+      $modelo = new AutoModel; // Modelo Automoveis
 
       $data = $this->request->getPost();
 

@@ -34,6 +34,17 @@ class AutoModel extends Model
                                 'TB_MODELO_ID'
                               ];
 
+    public function tb_auto_completo() {
+      $this->join('tb_marca', 'tb_automovel.TB_MARCA_ID = tb_marca.TB_MARCA_ID', 'inner');
+      $this->join('tb_modelo', 'tb_automovel.TB_MODELO_ID = tb_modelo.TB_MODELO_ID', 'inner');
+      $query = $this->get(); // Executa a query e guarda uma série de dados, como query, resultado, versão e etc
+      $query = $query->getResultArray(); // Extrai o resultado, em forma de tabela
+
+
+      return $query;
+
+    }
+
 }
 
 ?>

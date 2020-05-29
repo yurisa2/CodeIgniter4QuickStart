@@ -117,4 +117,24 @@ class Automovel extends Controller
       $modelo->delete($id);
     }
 
+    public function ex_revisao() {
+      $modelo = new AutoModel;
+      $data['automovel'] = $modelo->tb_auto_completo(); // Método criado, com inner join
+
+      $tabela = $data['automovel'];
+
+      echo "<pre>";
+      // var_dump($data['automovel']);
+      var_dump($tabela[0]["TB_AUTOMOVEL_NOME"]); // Peguei a primeira linha da tabela, e a coluna com o nome
+
+      //Exercicio
+      // Pegar a $tabela e converter ela em um array no formato:
+      // [ID => NOME]
+      // [1 => "CIVIC EXS"]
+      // Usando foreach
+      // Pode ser neste método aqui mesmo
+
+
+    }
+
 }

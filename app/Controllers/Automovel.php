@@ -20,6 +20,29 @@ use CodeIgniter\Controller;
 
 class Automovel extends Controller
 {
+
+    public function confirma($id, $acao) {
+
+
+      $modelo = new AutoModel;
+
+      $data['automovel'] = $modelo->find($id);
+
+
+      $data['titulo'] = "Confirma delete";
+      $data['msg'] = "Tem certeza que deseja deletar " . $data['automovel']['TB_AUTOMOVEL_NOME'];
+      $data['msg'] .= "<br> Esta ação nao pode ser desfeita";
+
+
+      if($acao == 'del') {
+        $data['destino'] =  "automovel/delete_automovel/".$id;
+      }
+
+
+
+      echo view('geral/confirmacao', $data);
+    }
+
     public function listar()
     {
         $modelo = new AutoModel;
@@ -32,12 +55,16 @@ class Automovel extends Controller
 
          foreach ($data['automovel'] as $key => $value) {
          $id = $data['automovel'][$key]['TB_AUTOMOVEL_ID'];
-          $data['automovel'][$key]['TB_AUTOMOVEL_ID'] = "ID: ".$id; // Adiciona ID na frente do campo TB_AUTOMOVEL_ID
+          // $data['automovel'][$key]['TB_AUTOMOVEL_ID'] = "ID: ".$id; // Adiciona ID na frente do campo TB_AUTOMOVEL_ID
 
 
           $link_alterar = "<a href=form_update/$id>Alterar Registro</a>";
-          $link_delete = "<a href=delete_automovel/$id>Deletar Registro</a>";
+          $link_delete = "<a href=confirma/$id/del>Deletar Registro</a>";
 
+          unset($data['automovel'][$key]['TB_MARCA_ID']); // remove FK (By Luigi)
+          unset($data['automovel'][$key]['TB_MODELO_ID']); // remove outra FK
+
+          unset($data['automovel'][$key]['TB_AUTOMOVEL_ID']); // Temporario
 
           $data['automovel'][$key]['Link_Alterar'] = $link_alterar;
           $data['automovel'][$key]['Link_Deletar'] = $link_delete;
@@ -115,26 +142,9 @@ class Automovel extends Controller
     public function delete_automovel($id) {
       $modelo = new AutoModel;
       $modelo->delete($id);
-    }
 
-    public function ex_revisao() {
-      $modelo = new AutoModel;
-      $data['automovel'] = $modelo->tb_auto_completo(); // Método criado, com inner join
-
-      $tabela = $data['automovel'];
-
-      echo "<pre>";
-      // var_dump($data['automovel']);
-      var_dump($tabela[0]["TB_AUTOMOVEL_NOME"]); // Peguei a primeira linha da tabela, e a coluna com o nome
-
-      //Exercicio
-      // Pegar a $tabela e converter ela em um array no formato:
-      // [ID => NOME]
-      // [1 => "CIVIC EXS"]
-      // Usando foreach
-      // Pode ser neste método aqui mesmo
-
-
+      //Vacilo do prof
+      return redirect()->to('http://localhost:8080/CodeIgniter4QuickStart/public/automovel/listar');
     }
 
 }

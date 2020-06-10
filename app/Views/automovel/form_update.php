@@ -16,7 +16,7 @@
 
 helper('form');
 
-echo form_open('automovel/update_automovel');
+echo form_open('automovel/confirma/'.$automovel['TB_AUTOMOVEL_ID']."/upd");
 
 echo form_label('ID');
 echo form_input('TB_AUTOMOVEL_ID', $automovel['TB_AUTOMOVEL_ID']);

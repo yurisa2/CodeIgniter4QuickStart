@@ -26,18 +26,31 @@ class Automovel extends Controller
 
       $modelo = new AutoModel;
 
-      $data['automovel'] = $modelo->find($id);
-
-
-      $data['titulo'] = "Confirma delete";
-      $data['msg'] = "Tem certeza que deseja deletar " . $data['automovel']['TB_AUTOMOVEL_NOME'];
-      $data['msg'] .= "<br> Esta ação nao pode ser desfeita";
-
 
       if($acao == 'del') {
+        $data['automovel'] = $modelo->find($id);
         $data['destino'] =  "automovel/delete_automovel/".$id;
-      }
 
+        $data['titulo'] = "Confirma delete";
+        $data['msg'] = "Tem certeza que deseja deletar " . $data['automovel']['TB_AUTOMOVEL_NOME'];
+        $data['msg'] .= "<br> Esta ação nao pode ser desfeita";
+
+
+      } else {
+        $data['automovel'] = $this->request->getPost();
+
+        // var_dump($data['automovel']);
+
+        $data['destino'] =   'automovel/update_automovel';
+
+        $data['titulo'] = "Confirma update";
+        $data['msg'] = "Tem certeza que deseja alterar " . $data['automovel']['TB_AUTOMOVEL_NOME'];
+        $data['msg'] .= "<br> Esta ação nao pode ser desfeita";
+
+
+
+
+      }
 
 
       echo view('geral/confirmacao', $data);
@@ -70,7 +83,9 @@ class Automovel extends Controller
           $data['automovel'][$key]['Link_Deletar'] = $link_delete;
         }
 
-        echo view('menu', $data);
+        $data['title'] = "Listar Automoveis";
+
+        // echo view('menu', $data);
         echo view('automovel/index', $data);
     }
 
@@ -137,14 +152,17 @@ class Automovel extends Controller
       $id = $data['TB_AUTOMOVEL_ID'];
 
       $modelo->update($id,$data);
+
+      return redirect()->to(base_url('public/automovel/listar'));
+
     }
 
     public function delete_automovel($id) {
       $modelo = new AutoModel;
-      $modelo->delete($id);
+      $modelo->delete($id); // Comentar para testar o redirect
 
-      //Vacilo do prof
-      return redirect()->to('http://localhost:8080/CodeIgniter4QuickStart/public/automovel/listar');
+
+      return redirect()->to(base_url('public/automovel/listar'));
     }
 
 }

@@ -133,6 +133,8 @@ class Automovel extends Controller
       $data['marca'] = $array_novo; // Aqui eu substituo o array da tabela geral, pelo array construido para o Dropdown
       // -------------------
 
+      $data['title'] = "Modificar Automoveis";
+
 
       echo view('automovel/form_update', $data);
     }

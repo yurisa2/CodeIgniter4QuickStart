@@ -31,10 +31,10 @@ class Database extends \CodeIgniter\Database\Config
 	 */
 	public $default = [
 		'DSN'      => '',
-		'hostname' => 'localhost',
-		'username' => 'root',
-		'password' => '',
-		'database' => 'bd_locadora',
+		'hostname' => 'locadora_pw2.mysql.dbaas.com.br',
+		'username' => 'locadora_pw2',
+		'password' => 'pw3187santana',
+		'database' => 'locadora_pw2',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,

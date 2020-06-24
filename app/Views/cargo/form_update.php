@@ -1,3 +1,6 @@
+<?= $this->extend('default_template')  // CARREGA O TEMPLATE?>
+<?= $this->section('content') // ESCPECIFICA EM QUAL SECTION COLOCA O ABAIXO ?>
+
 <?php
 
 /**
@@ -12,25 +15,42 @@
  */
 
 
-
 // Helpers - Formulario- https://codeigniter.com/user_guide/helpers/form_helper.html
-
-// var_dump($locacao); // Só pra ver o ARRAY
 
 helper('form');
 
-echo form_open('cargo/update_cargo');
+$attributes = ['class' => 'form-horizontal', 'role' => 'form'];
+echo form_open('cargo/update_cargo', $attributes);
 
-echo form_label('ID');
-echo form_input('TB_CARGO_ID', $cargo['TB_CARGO_ID']);
-echo '<br>';
+$attributes_label = ['class' => 'col-sm-3 control-label no-padding-right'];
+$attributes_input = ['class' => 'col-xs-10 col-sm-5'];
 
-echo form_label('Nome do cargo');
-echo form_input('TB_CARGO_NOME', $cargo['TB_CARGO_NOME']);
-echo '<br>';
+echo '<div class="form-group">';
+echo form_label('ID','label',$attributes_label);
+echo '<div class="col-sm-9">';
+echo form_input('TB_CARGO_ID', $cargo['TB_CARGO_ID'],$attributes_input);
+echo '</div>';
+echo '</div>';
+
+echo '<div class="form-group">';
+echo form_label('Nome do cargo','label',$attributes_label);
+echo '<div class="col-sm-9">';
+echo form_input('TB_CARGO_NOME', $cargo['TB_CARGO_NOME'],$attributes_input);
+echo '</div>';
+echo '</div>';
 
 
-echo form_submit('mysubmit', 'Alterar');
+$attributes_submit = ['class' => "btn btn-info"];
+											// <button class="btn btn-info" type="button">
+echo '
+<div class="clearfix form-actions">
+  <div class="col-md-offset-3 col-md-9">';
+
+echo form_submit($attributes_submit, 'Alterar');
+echo '
+  </div>
+</div>';
 
 
 ?>
+<?= $this->endSection() // ENCERRA A SECTION?>

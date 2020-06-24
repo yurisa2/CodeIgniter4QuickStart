@@ -16,6 +16,7 @@ namespace App\Controllers;
 
 use App\Models\AutoModel;
 use App\Models\ModelMarca; // Para poder usar a tabela tb_marca aqui tbm
+use App\Models\ModelModelo; // Para poder usar a tabela tb_marca aqui tbm
 use CodeIgniter\Controller;
 
 class Automovel extends Controller
@@ -35,7 +36,6 @@ class Automovel extends Controller
         $data['msg'] = "Tem certeza que deseja deletar " . $data['automovel']['TB_AUTOMOVEL_NOME'];
         $data['msg'] .= "<br> Esta ação nao pode ser desfeita";
 
-
       } else {
         $data['automovel'] = $this->request->getPost();
 
@@ -47,13 +47,31 @@ class Automovel extends Controller
         $data['msg'] = "Tem certeza que deseja alterar " . $data['automovel']['TB_AUTOMOVEL_NOME'];
         $data['msg'] .= "<br> Esta ação nao pode ser desfeita";
 
-
-
-
       }
 
 
       echo view('geral/confirmacao', $data);
+    }
+
+    public function process_records($data) {
+      foreach ($data as $key => $value) {
+      $id = $data[$key]['TB_AUTOMOVEL_ID'];
+       // $data[$key]['TB_AUTOMOVEL_ID'] = "ID: ".$id; // Adiciona ID na frente do campo TB_AUTOMOVEL_ID
+
+
+       $link_alterar = "<a href=form_update/$id>Alterar Registro</a>";
+       $link_delete = "<a href=confirma/$id/del>Deletar Registro</a>";
+
+       unset($data[$key]['TB_MARCA_ID']); // remove FK (By Luigi)
+       unset($data[$key]['TB_MODELO_ID']); // remove outra FK
+
+       unset($data[$key]['TB_AUTOMOVEL_ID']); // Temporario
+
+       $data[$key]['Link_Alterar'] = $link_alterar;
+       $data[$key]['Link_Deletar'] = $link_delete;
+     }
+
+     return $data;
     }
 
     public function listar()
@@ -66,26 +84,11 @@ class Automovel extends Controller
         $data['atual'] = 'Listar Automoveis'; // Label do menu
 
 
-         foreach ($data['automovel'] as $key => $value) {
-         $id = $data['automovel'][$key]['TB_AUTOMOVEL_ID'];
-          // $data['automovel'][$key]['TB_AUTOMOVEL_ID'] = "ID: ".$id; // Adiciona ID na frente do campo TB_AUTOMOVEL_ID
-
-
-          $link_alterar = "<a href=form_update/$id>Alterar Registro</a>";
-          $link_delete = "<a href=confirma/$id/del>Deletar Registro</a>";
-
-          unset($data['automovel'][$key]['TB_MARCA_ID']); // remove FK (By Luigi)
-          unset($data['automovel'][$key]['TB_MODELO_ID']); // remove outra FK
-
-          unset($data['automovel'][$key]['TB_AUTOMOVEL_ID']); // Temporario
-
-          $data['automovel'][$key]['Link_Alterar'] = $link_alterar;
-          $data['automovel'][$key]['Link_Deletar'] = $link_delete;
-        }
+        $data['automovel'] = $this->process_records($data['automovel']);
 
         $data['title'] = "Listar Automoveis";
 
-        // echo view('menu', $data);
+        echo view('menu');
         echo view('automovel/index', $data);
     }
 
@@ -93,10 +96,10 @@ class Automovel extends Controller
       $data['atual'] = 'Criar Automovel'; // MANDEI O LABEL DO MENU
 
       $modelo_marca = new ModelMarca; // Peguei a tabela de MARCAS
-
+      $modelo_modelo = new ModelModelo; // Peguei a tabela de MARCAS
 
       $data['marca'] = $modelo_marca->findAll(); // Joguei TODOS os valores num array
-
+      $data['modelo'] = $modelo_modelo->findAll(); // Joguei TODOS os valores num array
 
       $array_novo = array(); // Array do dropdown ID da marca => NOME DA MARCA
       // conforme doc: https://codeigniter4.github.io/userguide/helpers/form_helper.html#form_dropdown
@@ -106,6 +109,16 @@ class Automovel extends Controller
         $array_novo[$value['TB_MARCA_ID']] = $value['TB_MARCA_NOME'];
         // Cada registro de MARCA, vira uma linha no array, cuja a chave é TB_MARCA_ID e o valor é TB_MARCA_NOME
       }
+      $data['marca'] = $array_novo; // Aqui eu substituo o array da tabela geral, pelo array construido para o Dropdown
+
+      $array_modelo = array();
+      // Transformar array vindo do findAll() no formato aceito pelo dropdown
+      foreach ($data['modelo'] as $key => $value) {
+      $array_modelo[$value['TB_MODELO_ID']] = $value['TB_MODELO_DESC'];
+        // Cada registro de MARCA, vira uma linha no array, cuja a chave é TB_MARCA_ID e o valor é TB_MARCA_NOME
+      }
+
+      $data['modelo'] = $array_modelo; // Aqui eu substituo o array da tabela geral, pelo array construido para o Dropdown
 
       $data['marca'] = $array_novo; // Aqui eu substituo o array da tabela geral, pelo array construido para o Dropdown
 
@@ -118,6 +131,13 @@ class Automovel extends Controller
       $modelo = new AutoModel;
 
       $data['automovel'] = $modelo->find($id);
+
+
+            $modelo_marca = new ModelMarca; // Peguei a tabela de MARCAS
+            $modelo_modelo = new ModelModelo; // Peguei a tabela de MARCAS
+
+            $data['marca'] = $modelo_marca->findAll(); // Joguei TODOS os valores num array
+            $data['modelo'] = $modelo_modelo->findAll(); // Joguei TODOS os valores num array
 
 
  // ------------------- ADICIONAR DROPDOWN DE MARCA IGUAL NO CREATE
@@ -133,9 +153,20 @@ class Automovel extends Controller
       $data['marca'] = $array_novo; // Aqui eu substituo o array da tabela geral, pelo array construido para o Dropdown
       // -------------------
 
+
+      $array_modelo = array();
+      // Transformar array vindo do findAll() no formato aceito pelo dropdown
+      foreach ($data['modelo'] as $key => $value) {
+      $array_modelo[$value['TB_MODELO_ID']] = $value['TB_MODELO_DESC'];
+        // Cada registro de MARCA, vira uma linha no array, cuja a chave é TB_MARCA_ID e o valor é TB_MARCA_NOME
+      }
+
+      $data['modelo'] = $array_modelo; // Aqui eu substituo o array da tabela geral, pelo array construido para o Dropdown
+
+
       $data['title'] = "Modificar Automoveis";
 
-
+      echo view('menu');
       echo view('automovel/form_update', $data);
     }
 
@@ -165,6 +196,22 @@ class Automovel extends Controller
 
 
       return redirect()->to(base_url('public/automovel/listar'));
+    }
+
+    public function search() {
+      $modelo = new AutoModel;
+
+      $post = $this->request->getPost();
+
+      $data['automovel'] = $modelo->model_search($post['term']);
+
+      $data['automovel'] = $this->process_records($data['automovel']);
+
+      $data['search'] = true;
+      $data['search_term'] = $post['term'];
+
+      echo view('menu');
+      echo view('automovel/index', $data);
     }
 
 }

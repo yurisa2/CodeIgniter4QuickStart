@@ -10,16 +10,42 @@
 
                 <!-- bootstrap & fontawesome -->
                 <link rel="stylesheet" href="<?php echo base_url("public/css/bootstrap.min.css");?>" />
-                <link rel="stylesheet" href="<?php echo base_url("public/font-awesome/css/font-awesome.min.css");?>" />
-                <link rel="stylesheet" href="<?php echo base_url("public/css/ace.min.css");?>" class="theme-stylesheet" id="theme-style" />
+                <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">                <link rel="stylesheet" href="<?php echo base_url("public/css/ace.min.css");?>" class="theme-stylesheet" id="theme-style" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine" />
                 <!-- page specific plugin styles -->
+
+              		<!-- ace styles -->
+              		<link rel="stylesheet" href="<?php echo base_url("public/css/ace.min.css");?>" class="ace-main-stylesheet" id="main-ace-style" />
+
+              		<!--[if lte IE 9]>
+              			<link rel="stylesheet" href="<?php echo base_url("public/css/ace-part2.min.css");?>" class="ace-main-stylesheet" />
+              		<![endif]-->
+              		<link rel="stylesheet" href="<?php echo base_url("public/css/ace-skins.min.css");?>" />
+              		<link rel="stylesheet" href="<?php echo base_url("public/css/ace-rtl.min.css");?>" />
+
+              		<!--[if lte IE 9]>
+              		  <link rel="stylesheet" href="<?php echo base_url("public/css/ace-ie.min.css");?>" />
+              		<![endif]-->
+
+              		<!-- inline styles related to this page -->
+
+              		<!-- ace settings handler -->
+              		<script src="<?php echo base_url("public/js/ace-extra.min.js");?>"></script>
+
+              		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+              		<!--[if lte IE 8]>
+              		<script src="<?php echo base_url("public/js/html5shiv.min.js");?>"></script>
+              		<script src="<?php echo base_url("public/js/respond.min.js");?>"></script>
+              		<![endif]-->
+
+
 </head>
 
 <body class="no-skin">
-	<div id="navbar" class="navbar navbar-default">
-		<div class="navbar-container" id="navbar-container">
-			<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+		<div id="navbar" class="navbar navbar-default          ace-save-state">
+			<div class="navbar-container ace-save-state" id="navbar-container">
+        <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
 				<span class="sr-only">Toggle sidebar</span>
 
 				<span class="icon-bar"></span>
@@ -80,31 +106,13 @@
 			</div>
 		</div><!-- /.navbar-container -->
 	</div>
-	<div class="main-container" id="main-container">
-		<div id="sidebar" class="sidebar responsive">
-			<ul class="nav nav-list">
-				<li class="<?php echo $title == 'Home' ? 'active' : '' ?>">
-					<a href="/">
-						<i class="menu-icon fa fa-tachometer"></i>
-						<span class="menu-text"> Dashboard </span>
-					</a>
+	<div class="main-container ace-save-state" id="main-container">
+    <script type="text/javascript">
+    try{ace.settings.loadState('main-container')}catch(e){}
+  </script>
 
-					<b class="arrow"></b>
-				</li>
-				<li class="<?php echo $title == 'about' ? 'active' : ''?>">
-					<a href="/about">
-						<i class="menu-icon fa fa-list-alt"></i>
-						<span class="menu-text"> About us </span>
-					</a>
+    <?= $this->renderSection('menu') ?>
 
-					<b class="arrow"></b>
-				</li>
-			</ul><!-- /.nav-list -->
-
-			<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-				<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-			</div>
-		</div>
 
 		<div class="main-content">
 			<div class="main-content-inner">
@@ -114,15 +122,16 @@
 							<i class="ace-icon fa fa-home home-icon"></i>
 							<a href="/">Home</a>
 						</li>
-						<?php if($title != 'Home') :?>
-						<li class="active"><?php echo $title;?></li>
-						<?php endif;?>
+						<?php //if($title != 'Home') :?>
+						<li class="active"><?php if(!isset($title)) $title = "" ;
+                              echo $title;?></li>
+						<?php // endif;?>
 					</ul><!-- /.breadcrumb -->
 
 				<div class="nav-search" id="nav-search">
-					<form class="form-search">
+					<form class="form-search" action="search" method="post">
 						<span class="input-icon">
-							<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input1" autocomplete="off" />
+							<input type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input1" name="term" autocomplete="off" />
 							<i class="ace-icon fa fa-search nav-search-icon"></i>
 						</span>
 					</form>
@@ -157,7 +166,10 @@
 	</div><!-- /.main-container -->
 
 	<!-- basic scripts -->
-	<script type="text/javascript" src="<?php echo base_url("public/js/jquery-2.1.4.min.js");?>"></script>
+  <script
+			  src="https://code.jquery.com/jquery-2.2.4.min.js"
+			  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+			  crossorigin="anonymous"></script>
 	<script src="<?php echo base_url("public/js/bootstrap.min.js");?>"></script>
 </body>
 </html>

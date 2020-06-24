@@ -1,10 +1,5 @@
 <?= $this->extend('default_template')  // CARREGA O TEMPLATE?>
-
-
 <?= $this->section('content') // ESCPECIFICA EM QUAL SECTION COLOCA O ABAIXO ?>
-
-
-
 
 <?php
 /**
@@ -25,13 +20,7 @@
 helper('form');
 
 $attributes = ['class' => 'form-horizontal', 'role' => 'form'];
-
-
 echo form_open('automovel/confirma/'.$automovel['TB_AUTOMOVEL_ID']."/upd", $attributes);
-
-
-
-
 
 $attributes_label = ['class' => 'col-sm-3 control-label no-padding-right'];
 $attributes_input = ['class' => 'col-xs-10 col-sm-5'];
@@ -39,10 +28,11 @@ $attributes_input = ['class' => 'col-xs-10 col-sm-5'];
 echo '<div class="form-group">';
 echo form_label('ID','TB_AUTOMOVEL_ID',$attributes_label);
 echo '<div class="col-sm-9">';
-echo form_input('TB_AUTOMOVEL_ID', $automovel['TB_AUTOMOVEL_ID'],$attributes_input);
+echo form_input('TB_AUTOMOVEL_ID', $automovel['TB_AUTOMOVEL_ID'],array_merge($attributes_input, ['readonly' => true]));
 echo '</div>';
 echo '</div>';
 
+// var_dump(array_merge($attributes_label, ['disabled' => true]));
 
 echo '<div class="form-group">';
 echo form_label('Nome do Veiculo','TB_AUTOMOVEL_NOME',$attributes_label);
@@ -52,7 +42,7 @@ echo '</div>';
 echo '</div>';
 
 echo '<div class="form-group">';
-echo form_label('Ano','TB_AUTOMOVEL_ANO_FAB',$attributes_label);
+echo form_label('Ano','TB_AUT18OMOVEL_ANO_FAB',$attributes_label);
 echo '<div class="col-sm-9">';
 echo form_input('TB_AUTOMOVEL_ANO_FAB', $automovel['TB_AUTOMOVEL_ANO_FAB'],$attributes_input);
 echo '</div>';
@@ -95,12 +85,11 @@ echo '</div>';
 
 
 echo '<div class="form-group">';
-echo form_label('Modelo','TB_MODELO_ID',$attributes_label);
+echo form_label('Modelo','label',$attributes_label);
 echo '<div class="col-sm-9">';
-echo form_input('TB_MODELO_ID', $automovel['TB_MODELO_ID'],$attributes_input);
+echo form_dropdown('TB_MODELO_ID', $modelo);
 echo '</div>';
 echo '</div>';
-
 
 $attributes_submit = ['class' => "btn btn-info"];
 											// <button class="btn btn-info" type="button">
@@ -110,14 +99,11 @@ echo '
 
 echo form_submit($attributes_submit, 'Salvar');
 
-echo '	
+echo '
   </div>
 </div>';
 
 
 
  ?>
-
-
-
  <?= $this->endSection() // ENCERRA A SECTION?>

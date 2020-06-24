@@ -1,3 +1,6 @@
+<?= $this->extend('default_template')  // CARREGA O TEMPLATE?>
+<?= $this->section('content') // ESCPECIFICA EM QUAL SECTION COLOCA O ABAIXO ?>
+
 <?php
 
 /**
@@ -18,41 +21,86 @@
 
 helper('form');
 
-echo form_open('automovel/create_automovel');
+$attributes = ['class' => 'form-horizontal', 'role' => 'form'];
+echo form_open('automovel/create_automovel', $attributes);
 
-echo form_label('Nome do Veiculo');
-echo form_input('TB_AUTOMOVEL_NOME');
-echo '<br>';
+$attributes_label = ['class' => 'col-sm-3 control-label no-padding-right'];
+$attributes_input = ['class' => 'col-xs-10 col-sm-5'];
 
-echo form_label('Ano');
-echo form_input('TB_AUTOMOVEL_ANO_FAB');
-echo '<br>';
+echo '<div class="form-group">';
+echo form_label('Nome do Veiculo','label',$attributes_label);
+echo '<div class="col-sm-9">';
+echo form_input('TB_AUTOMOVEL_NOME','',$attributes_input);
+echo '</div>';
+echo '</div>';
 
-echo form_label('Cor');
-echo form_input('TB_AUTOMOVEL_COR');
-echo '<br>';
+echo '<div class="form-group">';
+echo form_label('Ano','label',$attributes_label);
+echo '<div class="col-sm-9">';
+echo form_input('TB_AUTOMOVEL_ANO_FAB','',$attributes_input);
+echo '</div>';
+echo '</div>';
+// echo '<br>';
 
-echo form_label('KM');
-echo form_input('TB_AUTOMOVEL_KM');
-echo '<br>';
+echo '<div class="form-group">';
+echo form_label('Cor','label',$attributes_label);
+echo '<div class="col-sm-9">';
+echo form_input('TB_AUTOMOVEL_COR','',$attributes_input);
+echo '</div>';
+echo '</div>';
+// echo '<br>';
 
-echo form_label('Valor D');
-echo form_input('TB_AUTOMOVEL_VALOR_D');
-echo '<br>';
+echo '<div class="form-group">';
+echo form_label('KM','label',$attributes_label);
+echo '<div class="col-sm-9">';
+echo form_input('TB_AUTOMOVEL_KM','',$attributes_input);
+echo '</div>';
+echo '</div>';
+// echo '<br>';
 
-echo form_label('Status');
-echo form_input('TB_AUTOMOVEL_STATUS');
-echo '<br>';
+echo '<div class="form-group">';
+echo form_label('Valor D','label',$attributes_label);
+echo '<div class="col-sm-9">';
+echo form_input('TB_AUTOMOVEL_VALOR_D','',$attributes_input);
+echo '</div>';
+echo '</div>';
+// echo '<br>';
 
-echo form_label('Marca');
+echo '<div class="form-group">';
+echo form_label('Status','label',$attributes_label);
+echo '<div class="col-sm-9">';
+echo form_input('TB_AUTOMOVEL_STATUS','',$attributes_input);
+echo '</div>';
+echo '</div>';
+// echo '<br>';
+
+echo '<div class="form-group">';
+echo form_label('Marca','label',$attributes_label);
+echo '<div class="col-sm-9">';
 echo form_dropdown('TB_MARCA_ID', $marca);
-echo '<br>';
+echo '</div>';
+echo '</div>';
+// echo '<br>';
 
-echo form_label('Modelo');
-echo form_input('TB_MODELO_ID');
-echo '<br>';
+echo '<div class="form-group">';
+echo form_label('Modelo','label',$attributes_label);
+echo '<div class="col-sm-9">';
+echo form_dropdown('TB_MODELO_ID', $modelo);
+echo '</div>';
+echo '</div>';
+// echo '<br>';
+$attributes_submit = ['class' => "btn btn-info"];
 
-echo form_submit('mysubmit', 'Submit Post!');
+echo '
+<div class="clearfix form-actions">
+  <div class="col-md-offset-3 col-md-9">';
+
+echo form_submit($attributes_submit, 'Salvar');
+
+echo '
+  </div>
+</div>';
 
 
  ?>
+ <?= $this->endSection() // ENCERRA A SECTION?>

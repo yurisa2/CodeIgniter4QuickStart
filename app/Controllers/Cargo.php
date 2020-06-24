@@ -37,12 +37,12 @@ class Cargo extends Controller
           $data['cargo'][$key]['Link_Alterar'] = $link_alterar;
           $data['cargo'][$key]['Link_Deletar'] = $link_delete;
         }
-
+        echo view('menu');
         echo view('cargo/listar', $data);
     }
 
     public function form_create() {
-
+      echo view('menu');
         echo view('cargo/form_create');
 
     }
@@ -59,7 +59,7 @@ class Cargo extends Controller
         $modelo = new CargoModel;
 
         $data['cargo'] = $modelo->find($id);
-
+        echo view('menu');
         echo view('cargo/form_update', $data);
     }
 

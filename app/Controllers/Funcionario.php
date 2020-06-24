@@ -5,7 +5,7 @@
  * @category   Controller CodeIgniter4
  * @package    PW3
  * @author     @yurisa2 <yuri@sa2.com.br>
- * @author     Gabriel da Silva 
+ * @author     Gabriel da Silva
  * @author     Daniel
  * @author     Luigi
  * @author     Leandro
@@ -30,7 +30,7 @@ class funcionario extends Controller
         $data['funcionario'] = $modelo->findAll();
         foreach ($data['funcionario'] as $key => $value) { // Vai passar (iterar) todas as posições do array
           $id = $data['funcionario'][$key]['TB_FUNCIONARIO_ID']; // Pega o ID do passo/registro atual (linha)
-          $data['funcionario'][$key]['TB_FUNCIONARIO_ID'] = "ID: ".$id; 
+          $data['funcionario'][$key]['TB_FUNCIONARIO_ID'] = "ID: ".$id;
           // Escreve links
           $link_alterar = "<a href=form_update/$id>Alterar Registro</a>";
           $link_delete = "<a href=delete_cargo/$id>Deletar Registro</a>";
@@ -40,12 +40,12 @@ class funcionario extends Controller
           $data['funcionario'][$key]['Link_Deletar'] = $link_delete;
         }
 
-
+        echo view('menu');
         echo view('funcionario/index', $data);
     }
 
     public function form_create() {
-
+      echo view('menu');
       echo view('funcionario/form_create');
 
     }
@@ -54,7 +54,7 @@ class funcionario extends Controller
       $modelo = new FuncionarioModel;
 
       $data['funcionario'] = $modelo->find($id);
-
+      echo view('menu');
       echo view('funcionario/form_update', $data);
     }
 

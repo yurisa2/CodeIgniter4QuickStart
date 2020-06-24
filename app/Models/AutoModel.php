@@ -40,9 +40,19 @@ class AutoModel extends Model
       $query = $this->get(); // Executa a query e guarda uma série de dados, como query, resultado, versão e etc
       $query = $query->getResultArray(); // Extrai o resultado, em forma de tabela
 
+      return $query;
+    }
+
+    public function model_search($term) {
+      $this->join('tb_marca', 'tb_automovel.TB_MARCA_ID = tb_marca.TB_MARCA_ID', 'inner');
+      $this->join('tb_modelo', 'tb_automovel.TB_MODELO_ID = tb_modelo.TB_MODELO_ID', 'inner');
+
+      $this->like('TB_AUTOMOVEL_NOME', $term, 'both'); // AQUI ESTA A PESQUISA
+
+      $query = $this->get(); // Executa a query e guarda uma série de dados, como query, resultado, versão e etc
+      $query = $query->getResultArray(); // Extrai o resultado, em forma de tabela
 
       return $query;
-
     }
 
 }

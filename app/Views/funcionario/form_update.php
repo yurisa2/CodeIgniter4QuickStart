@@ -1,3 +1,6 @@
+<?= $this->extend('default_template')  // CARREGA O TEMPLATE?>
+<?= $this->section('content') // ESCPECIFICA EM QUAL SECTION COLOCA O ABAIXO ?>
+
 <?php
 
 /**
@@ -5,7 +8,7 @@
  *
  * @category   View CodeIgniter4
  * @package    PW3
- * @author     Gabriel da Silva 
+ * @author     Gabriel da Silva
  * @author     Daniel
  * @author     Luigi
  * @author     Leandro
@@ -21,28 +24,60 @@
 
 helper('form');
 
-echo form_open('funcionario/update_funcionario');
+$attributes = ['class' => 'form-horizontal', 'role' => 'form'];
+echo form_open('funcionario/update_funcionario', $attributes);
 
-echo form_label('ID');
+$attributes_label = ['class' => 'col-sm-3 control-label no-padding-right'];
+$attributes_input = ['class' => 'col-xs-10 col-sm-5'];
+
+echo '<div class="form-group">';
+echo form_label('ID','',$attributes_label);
+echo '<div class="col-sm-9">';
 echo form_input('TB_FUNCIONARIO_ID', $funcionario['TB_FUNCIONARIO_ID']);
-echo '<br>';
+echo '</div>';
+echo '</div>';
 
-echo form_label('Nome do Funcionário');
+echo '<div class="form-group">';
+echo form_label('Nome do Funcionário','',$attributes_label);
+echo '<div class="col-sm-9">';
 echo form_input('TB_FUNCIONARIO_NOME', $funcionario['TB_FUNCIONARIO_NOME']);
-echo '<br>';
+echo '</div>';
+echo '</div>';
 
-echo form_label('TEL');
+echo '<div class="form-group">';
+echo form_label('TEL','',$attributes_label);
+echo '<div class="col-sm-9">';
 echo form_input('TB_FUNCIONARIO_TEL', $funcionario['TB_FUNCIONARIO_TEL']);
-echo '<br>';
+echo '</div>';
+echo '</div>';
 
-echo form_label('DATA CONTRATO');
+echo '<div class="form-group">';
+echo form_label('DATA CONTRATO','',$attributes_label);
+echo '<div class="col-sm-9">';
 echo form_input('TB_FUNCIONARIO_DT_CONTRATO', $funcionario['TB_FUNCIONARIO_DT_CONTRATO']);
-echo '<br>';
+echo '</div>';
+echo '</div>';
 
-echo form_label('Cargo');
+echo '<div class="form-group">';
+echo form_label('Cargo','',$attributes_label);
+echo '<div class="col-sm-9">';
 echo form_input('TB_CARGO_ID', $funcionario['TB_CARGO_ID']);
-echo '<br>';
+echo '</div>';
+echo '</div>';
 
-echo form_submit('mysubmit', 'Submit Post!');
+$attributes_submit = ['class' => "btn btn-info"];
+											// <button class="btn btn-info" type="button">
+echo '
+<div class="clearfix form-actions">
+  <div class="col-md-offset-3 col-md-9">';
 
-?>
+echo form_submit($attributes_submit, 'Salvar');
+
+echo '
+  </div>
+</div>';
+
+
+
+ ?>
+ <?= $this->endSection() // ENCERRA A SECTION?>

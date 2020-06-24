@@ -5,7 +5,7 @@
      *
      * @category   Controle da TB_MODELO
      * @package    PW3
-     * @author     HELITON MARTINS DE LIMA <helitonmartinsdelima@gmail.com> 
+     * @author     HELITON MARTINS DE LIMA <helitonmartinsdelima@gmail.com>
      * @version    0.1
      */
 
@@ -20,8 +20,8 @@ class Modelo extends Controller
     {
         $modelo = new ModelModelo;
 
-        $data['modelo'] = $modelo->findAll();  
-        
+        $data['modelo'] = $modelo->findAll();
+
         foreach($data['modelo'] as $key => $value){
             $id = $data['modelo'][$key]['TB_MODELO_ID'];
 
@@ -33,13 +33,13 @@ class Modelo extends Controller
             $data['modelo'][$key]['link_alterar'] = $link_alterar;
             $data['modelo'][$key]['link_excluir'] = $link_excluir;
         }
-
+        echo view('menu');
         echo view('modelo/index', $data);
 
     }
 
     public function form_create(){
-       
+      echo view('menu');
         echo view('modelo/cadastro');
     }
 
@@ -53,7 +53,7 @@ class Modelo extends Controller
     public function form_update($idmodelo){
         $modelo = new ModelModelo;
         $data['modelo'] = $modelo -> find($idmodelo);
-       
+        echo view('menu');
         echo view('modelo/alterar', $data);
     }
 

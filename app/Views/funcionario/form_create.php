@@ -1,3 +1,6 @@
+<?= $this->extend('default_template')  // CARREGA O TEMPLATE?>
+<?= $this->section('content') // ESCPECIFICA EM QUAL SECTION COLOCA O ABAIXO ?>
+
 <?php
 
 /**
@@ -5,7 +8,7 @@
  *
  * @category   View CodeIgniter4
  * @package    PW3
- * @author     Gabriel da Silva 
+ * @author     Gabriel da Silva
  * @author     Daniel
  * @author     Luigi
  * @author     Leandro
@@ -21,25 +24,52 @@
 
 helper('form');
 
-echo form_open('funcionario/create_funcionario');
+$attributes = ['class' => 'form-horizontal', 'role' => 'form'];
+echo form_open('funcionario/create_funcionario', $attributes);
 
-echo form_label('Nome do Funcionario ');
-echo form_input('TB_FUNCIONARIO_NOME');
-echo '<br>';
+$attributes_label = ['class' => 'col-sm-3 control-label no-padding-right'];
+$attributes_input = ['class' => 'col-xs-10 col-sm-5'];
 
-echo form_label('Telefone ');
-echo form_input('TB_FUNCIONARIO_TEL');
-echo '<br>';
+echo '<div class="form-group">';
+echo form_label('Nome do Funcionario ','label',$attributes_label);
+echo '<div class="col-sm-9">';
+echo form_input('TB_FUNCIONARIO_NOME','',$attributes_input);
+echo '</div>';
+echo '</div>';
 
-echo form_label('Data Contrato ');
-echo form_input('TB_FUNCIONARIO_DT_CONTRATO');
-echo '<br>';
+echo '<div class="form-group">';
+echo form_label('Telefone ','label',$attributes_label);
+echo '<div class="col-sm-9">';
+echo form_input('TB_FUNCIONARIO_TEL','',$attributes_input);
+echo '</div>';
+echo '</div>';
 
-echo form_label('Cargo ');
-echo form_input('TB_CARGO_ID');
-echo '<br>';
+echo '<div class="form-group">';
+echo form_label('Data Contrato ','label',$attributes_label);
+echo '<div class="col-sm-9">';
+echo form_input('TB_FUNCIONARIO_DT_CONTRATO','',$attributes_input);
+echo '</div>';
+echo '</div>';
 
-echo form_submit('mysubmit', 'Submit Post!');
+echo '<div class="form-group">';
+echo form_label('Cargo ','label',$attributes_label);
+echo '<div class="col-sm-9">';
+echo form_input('TB_CARGO_ID','',$attributes_input);
+echo '</div>';
+echo '</div>';
+
+$attributes_submit = ['class' => "btn btn-info"];
+
+echo '
+<div class="clearfix form-actions">
+  <div class="col-md-offset-3 col-md-9">';
+
+echo form_submit($attributes_submit, 'Salvar');
+
+echo '
+  </div>
+</div>';
 
 
  ?>
+<?= $this->endSection() // ENCERRA A SECTION?>

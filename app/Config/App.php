@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://localhost:8080/CodeIgniter4QuickStart/';
+	public $baseURL = 'http://ti.sa2.com.br/etec/187/locadora/';
 
 	/*
 	|--------------------------------------------------------------------------

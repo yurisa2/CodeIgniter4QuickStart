@@ -5,7 +5,7 @@
      *
      * @category   Controle da TB_MARCA
      * @package    PW3
-     * @author     HELITON MARTINS DE LIMA <helitonmartinsdelima@gmail.com> 
+     * @author     HELITON MARTINS DE LIMA <helitonmartinsdelima@gmail.com>
      * @version    0.1
      */
 
@@ -20,7 +20,7 @@ class Marca extends Controller
     {
         $modelo = new ModelMarca;
 
-        $data['marca'] = $modelo->findAll();    
+        $data['marca'] = $modelo->findAll();
 
         foreach($data['marca'] as $key => $value){
             $id = $data['marca'][$key]['TB_MARCA_ID'];
@@ -33,13 +33,13 @@ class Marca extends Controller
             $data['marca'][$key]['link_alterar'] = $link_alterar;
             $data['marca'][$key]['link_excluir'] = $link_excluir;
         }
-
+        echo view('menu');
         echo view('marca/index', $data);
 
     }
 
     public function form_create(){
-       
+      echo view('menu');
         echo view('marca/cadastro');
     }
 
@@ -53,7 +53,7 @@ class Marca extends Controller
     public function form_update($idMarca){
         $Marca = new ModelMarca;
         $data['marca'] = $Marca -> find($idMarca);
-       
+        echo view('menu');
         echo view('marca/alterar', $data);
     }
 

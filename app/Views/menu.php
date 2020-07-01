@@ -1,7 +1,10 @@
 <?= $this->section('menu') // ESCPECIFICA EM QUAL SECTION COLOCA O ABAIXO ?>
 
 
-<div id="sidebar" class="sidebar responsive">
+<div id="sidebar" class="sidebar responsive ace-save-state">
+        <script type="text/javascript">
+					try{ace.settings.loadState('sidebar')}catch(e){}
+				</script>
   <ul class="nav nav-list">
 
 
@@ -35,8 +38,8 @@ $controllers['Modelo'][] = "Listar";
 
 foreach ($controllers as $contr_name => $contr) {
   echo "
-  <li class=\"open\">
-    <a href=\"#\" class=\"dropdown-toggle\">
+  <li class=''>
+    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">
       <i class=\"menu-icon fa fa-desktop\"></i>
       <span class=\"menu-text\">
         $contr_name
@@ -80,7 +83,10 @@ foreach ($controllers as $contr_name => $contr) {
   </ul><!-- /.nav-list -->
 
   <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-    <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+    <i id="sidebar-toggle-icon" 
+       class="ace-icon fa fa-angle-double-left" 
+       data-icon1="ace-icon fa fa-angle-double-left" 
+       data-icon2="ace-icon fa fa-angle-double-right"></i>
   </div>
 </div>
 

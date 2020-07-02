@@ -12,7 +12,8 @@
  */
 use CodeIgniter\Controller;
 use App\Models\ClienteModel;
-class Cliente extends Controller
+
+class Cliente extends BaseController
 {
 
     public function listar()

@@ -14,10 +14,10 @@
 
 namespace App\Controllers;
 
-use App\Models\CargoModel;
+use App\Models\CargoModel; 
 use CodeIgniter\Controller;
 
-class Cargo extends Controller
+class Cargo extends BaseController
 {
     public function listar()
     {

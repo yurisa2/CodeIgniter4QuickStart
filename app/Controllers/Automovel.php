@@ -19,7 +19,7 @@ use App\Models\ModelMarca; // Para poder usar a tabela tb_marca aqui tbm
 use App\Models\ModelModelo; // Para poder usar a tabela tb_marca aqui tbm
 use CodeIgniter\Controller;
 
-class Automovel extends Controller
+class Automovel extends BaseController
 {
 
     public function confirma($id, $acao) {

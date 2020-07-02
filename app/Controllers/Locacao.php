@@ -23,7 +23,7 @@ namespace App\Controllers;
 use App\Models\LocacaoModel;
 use CodeIgniter\Controller;
 
-class Locacao extends Controller
+class Locacao extends BaseController
 {
     public function listar()
     {

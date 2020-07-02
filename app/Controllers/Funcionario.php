@@ -21,7 +21,7 @@ namespace App\Controllers;
 use App\Models\FuncionarioModel;
 use CodeIgniter\Controller;
 
-class funcionario extends Controller
+class funcionario extends BaseController
 {
     public function listar()
     {

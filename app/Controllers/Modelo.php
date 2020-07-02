@@ -14,7 +14,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\ModelModelo;
 
-class Modelo extends Controller
+class Modelo extends BaseController
 {
     public function listar()
     {

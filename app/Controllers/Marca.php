@@ -14,7 +14,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\ModelMarca;
 
-class Marca extends Controller
+class Marca extends BaseController
 {
     public function listar()
     {

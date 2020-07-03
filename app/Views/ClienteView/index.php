@@ -24,8 +24,8 @@ $template = [
 
 $tb->setTemplate($template);
 
-$tb->setHeading('TB_CLIENTE_ID','TB_CLIENTE_NOME', 'TB_CLIENTE_TEL', 'TB_CLIENTE_SEXO', 'TB_CLIENTE_EMAIL', 'TB_CLIENTE_SENHA', 'TB_CLIENTE_ENDERECO', 'TB_CLIENTE_COMPLEMENTO',
-                    'TB_CLIENTE_BAIRRO','TB_CLIENTE_CIDADE','TB_CLIENTE_UF','TB_CLIENTE_DT_NASC','TB_CLIENTE_DT_CAD', 'Alterar', 'deletar');
+$tb->setHeading('Id','Nome', 'Telefone', 'Sexo', 'Email', 'Senha', 'Endereco', 'Comp',
+                    'Bairro','Cidade','UF','Data Nasc','Data Cadastro', 'Alterar', 'Deletar');
 echo $tb -> generate($dados);
 
 

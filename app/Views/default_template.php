@@ -3,7 +3,7 @@
 <head>
                 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
                 <meta charset="utf-8" />
-                <title>Test CI Application</title>
+                <title>Locadora de veículos</title>
 
                 <meta name="description" content="overview &amp; stats" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -59,23 +59,36 @@
 				<a href="/" class="navbar-brand">
 					<small>
 						<i class="fa fa-leaf"></i>
-						Sample CI Example
+						Locadora
 					</small>
 				</a>
 			</div>
 
-			<div class="navbar-buttons navbar-header pull-right" role="navigation">
+      <?php
+      $session = \Config\Services::session(); // Inicia a session
+      if($session->autenticado == 'true') $display = 'block';
+      else $display = 'none';
+      ?>
+
+			<div class="navbar-buttons navbar-header pull-right" role="navigation" style="display:<?php echo $display; ?>;">
 				<ul class="nav ace-nav">
 					<li class="light-blue">
-						<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+
+
+						<a data-toggle="dropdown" href="#" class="dropdown-toggle" >
 							<img class="nav-user-photo" src="<?php echo base_url("public/avatars/user.jpg");?>" alt="Admin Photo" />
 							<span class="user-info">
-							<small>Welcome,</small>
-							Admin
+
+							<?php
+              $session = \Config\Services::session(); // Inicia a session
+
+              echo "<small>$session->usuario,</small>";
+               ?>
 							</span>
 
 							<i class="ace-icon fa fa-caret-down"></i>
 						</a>
+
 
 						<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 							<li>
@@ -95,7 +108,7 @@
 							<li class="divider"></li>
 
 							<li>
-							<a href="#">
+							<a href="../login/logoff">
 							<i class="ace-icon fa fa-power-off"></i>
 							Logout
 							</a>
@@ -118,7 +131,7 @@
 			<div class="main-content-inner">
 				<div class="breadcrumbs" id="breadcrumbs">
 					<ul class="breadcrumb">
-						<li>
+						<li style="display:<?php echo $display; ?>;">
 							<i class="ace-icon fa fa-home home-icon"></i>
 							<a href="/">Home</a>
 						</li>
@@ -131,7 +144,7 @@
 				<div class="nav-search" id="nav-search">
 					<form class="form-search" action="search" method="post">
 						<span class="input-icon">
-							<input type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input1" name="term" autocomplete="off" />
+							<input type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input1" name="term" autocomplete="off" style="display:<?php echo $display; ?>"; />
 							<i class="ace-icon fa fa-search nav-search-icon"></i>
 						</span>
 					</form>

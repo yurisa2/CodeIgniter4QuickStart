@@ -21,8 +21,6 @@ echo form_open('Cliente/create_cliente', $attributes);
 $attributes_label = ['class' => 'col-sm-3 control-label no-padding-right'];
 $attributes_input = ['class' => 'col-xs-10 col-sm-5'];
 
-echo '<div class="form-group">';
-echo('<b>CADASTRO DE CLIENTES</b><br><br>');
 
 echo '<div class="form-group">';
 echo form_label('Nome do Cliente: ','label',$attributes_label);
@@ -35,10 +33,7 @@ echo '<div class="form-group">';
 echo form_label('Telefone: ','label',$attributes_label);
 echo '<div class="col-sm-9">';
 echo form_input('TB_CLIENTE_TEL','',$attributes_input);
-echo '</div>';echo '
-  </div>
-</div>';
-
+echo '</div>';
 echo '</div>';
 
 echo '<div class="form-group">';

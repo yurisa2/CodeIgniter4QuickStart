@@ -36,6 +36,7 @@ echo '</div>';
 
 echo '<div class="form-group">';
 echo form_label('Ano','label',$attributes_label);
+
 echo '<div class="col-sm-9">';
 echo form_input('TB_AUTOMOVEL_ANO_FAB','',$attributes_input);
 echo '</div>';

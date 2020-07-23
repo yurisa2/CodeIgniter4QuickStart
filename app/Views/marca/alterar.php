@@ -27,7 +27,7 @@ echo '<div class="form-group">';
     echo form_label('ID: ','',$attributes_label);
     echo '<div class="col-sm-9">';
 
-    echo form_input('TB_MARCA_ID', $marca['TB_MARCA_ID'],$attributes_input);
+    echo form_input('TB_MARCA_ID', $marca['TB_MARCA_ID'],array_merge($attributes_input, ['readonly' => true]));
     echo '</div>';
     echo '</div>';
 

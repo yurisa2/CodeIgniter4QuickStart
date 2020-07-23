@@ -27,7 +27,7 @@ $attributes_input = ['class' => 'col-xs-10 col-sm-5'];
 echo '<div class="form-group">';
 echo form_label('ID: ','label', $attributes_label);
 echo '<div class="col-sm-9">';
-echo form_input('TB_CLIENTE_ID', $cliente['TB_CLIENTE_ID'],$attributes_input);
+echo form_input('TB_CLIENTE_ID', $cliente['TB_CLIENTE_ID'],array_merge($attributes_input, ['readonly' => true]));
 echo '</div>';
 echo '</div>';
 

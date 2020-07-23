@@ -8,6 +8,8 @@
                 <meta name="description" content="overview &amp; stats" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
+                <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-hashes' 'unsafe-eval'">
+
                 <!-- bootstrap & fontawesome -->
                 <link rel="stylesheet" href="<?php echo base_url("public/css/bootstrap.min.css");?>" />
                 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">                <link rel="stylesheet" href="<?php echo base_url("public/css/ace.min.css");?>" class="theme-stylesheet" id="theme-style" />
@@ -76,7 +78,7 @@
 
 
 						<a data-toggle="dropdown" href="#" class="dropdown-toggle" >
-							<img class="nav-user-photo" src="<?php echo base_url("public/avatars/user.jpg");?>" alt="Admin Photo" />
+							<!-- <img class="nav-user-photo" src="<?php echo base_url("public/avatars/user.jpg");?>" alt="Admin Photo" /> -->
 							<span class="user-info">
 
 							<?php

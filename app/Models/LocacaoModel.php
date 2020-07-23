@@ -39,6 +39,20 @@ class LocacaoModel extends Model
                                 'TB_AUTOMOVEL_ID',
                               ];
 
+
+    public function tb_locacao_completo() {
+      $this->join('tb_cliente', 'tb_locacao.TB_CLIENTE_ID = tb_cliente.TB_CLIENTE_ID', 'inner');
+      $this->join('tb_funcionario', 'tb_locacao.TB_FUNCIONARIO_ID = tb_funcionario.TB_FUNCIONARIO_ID', 'inner');
+      $this->join('tb_automovel', 'tb_locacao.TB_AUTOMOVEL_ID = tb_automovel.TB_AUTOMOVEL_ID', 'inner');
+
+
+      $query = $this->get(); // Executa a query e guarda uma série de dados, como query, resultado, versão e etc
+      $query = $query->getResultArray(); // Extrai o resultado, em forma de tabela
+
+      return $query;
+
+    }
+
 }
 
 ?>

@@ -4,7 +4,7 @@
  *
  * @category   Modelo CodeIgniter4
  * @package    PW3
- * @author     Gabriel da Silva 
+ * @author     Gabriel da Silva
  * @author     Daniel
  * @author     Luigi
  * @author     Leandro
@@ -33,6 +33,15 @@ class FuncionarioModel extends Model
                                 'TB_CARGO_ID'
                               ];
 
+    public function tb_funcionario_completo() {
+      $this->join('tb_cargo', 'tb_funcionario.TB_CARGO_ID = tb_cargo.TB_CARGO_ID', 'inner');
+
+      $query = $this->get(); // Executa a query e guarda uma série de dados, como query, resultado, versão e etc
+      $query = $query->getResultArray(); // Extrai o resultado, em forma de tabela
+
+      return $query;
+
+    }
 }
 
 ?>

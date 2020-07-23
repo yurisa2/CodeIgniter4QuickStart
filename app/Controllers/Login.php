@@ -39,6 +39,9 @@ class Login extends Controller
 
     $dados_banco = $Cliente->get_client($email); // Pesquisa o banco através do método que utiliza where usando o $email como parametro
 
+    echo '<pre>';
+    var_dump($dados_banco);
+
     $senha_banco = $dados_banco[0]["TB_CLIENTE_SENHA"]; // Pega a senha do resultado da pesquisa
 
     if($senha_do_form == $senha_banco) {
@@ -52,6 +55,7 @@ class Login extends Controller
 
       echo 'USUARIO NAO ENCONTRADO';
       $session->set('autenticado', 'false');
+      redirect()->to(base_url('public/'));
     }
   }
 

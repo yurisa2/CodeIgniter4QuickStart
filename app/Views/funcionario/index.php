@@ -11,7 +11,7 @@ $template = [
 
 $tabela->setTemplate($template);
 //Adiciona Heading
-$tabela->setHeading('TB_FUNCIONARIO_ID', 'TB_FUNCIONARIO_NOME','TB_FUNCIONARIO_TEL', 'TB_FUNCIONARIO_DT_CONTRATO', 'TB_CARGO_ID', 'Alterar', 'deletar');
+$tabela->setHeading('id', 'Nome','Tel', 'Dt Contrato', 'Cargo', 'Alterar', 'deletar');
 echo $tabela->generate($funcionario);
 
 

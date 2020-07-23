@@ -23,7 +23,12 @@ class Cliente extends BaseController
 
         foreach($data['dados'] as $key => $value){
             $id = $data['dados'][$key]['TB_CLIENTE_ID'];
-            $data['dados'][$key]['TB_CLIENTE_ID'] = "ID: ".$id;
+            $data['dados'][$key]['TB_CLIENTE_ID'] = $id;
+
+            unset($data['dados'][$key]['TB_CLIENTE_COMPLEMENTO']);
+            unset($data['dados'][$key]['TB_CLIENTE_BAIRRO']);
+            unset($data['dados'][$key]['TB_CLIENTE_DT_NASC']);
+            unset($data['dados'][$key]['TB_CLIENTE_DT_CAD']);
 
                 //form_update/ID:1
             $linkAlterar = "<a href=form_update/$id>Alterar</a>";

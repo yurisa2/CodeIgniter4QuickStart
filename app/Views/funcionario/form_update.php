@@ -33,35 +33,35 @@ $attributes_input = ['class' => 'col-xs-10 col-sm-5'];
 echo '<div class="form-group">';
 echo form_label('ID','',$attributes_label);
 echo '<div class="col-sm-9">';
-echo form_input('TB_FUNCIONARIO_ID', $funcionario['TB_FUNCIONARIO_ID']);
+echo form_input('TB_FUNCIONARIO_ID', $funcionario['TB_FUNCIONARIO_ID'],array_merge($attributes_input, ['readonly' => true]));
 echo '</div>';
 echo '</div>';
 
 echo '<div class="form-group">';
 echo form_label('Nome do Funcionário','',$attributes_label);
 echo '<div class="col-sm-9">';
-echo form_input('TB_FUNCIONARIO_NOME', $funcionario['TB_FUNCIONARIO_NOME']);
+echo form_input('TB_FUNCIONARIO_NOME', $funcionario['TB_FUNCIONARIO_NOME'], $attributes_input);
 echo '</div>';
 echo '</div>';
 
 echo '<div class="form-group">';
 echo form_label('TEL','',$attributes_label);
 echo '<div class="col-sm-9">';
-echo form_input('TB_FUNCIONARIO_TEL', $funcionario['TB_FUNCIONARIO_TEL']);
+echo form_input('TB_FUNCIONARIO_TEL', $funcionario['TB_FUNCIONARIO_TEL'], $attributes_input);
 echo '</div>';
 echo '</div>';
 
 echo '<div class="form-group">';
 echo form_label('DATA CONTRATO','',$attributes_label);
 echo '<div class="col-sm-9">';
-echo form_input('TB_FUNCIONARIO_DT_CONTRATO', $funcionario['TB_FUNCIONARIO_DT_CONTRATO']);
+echo form_input('TB_FUNCIONARIO_DT_CONTRATO', $funcionario['TB_FUNCIONARIO_DT_CONTRATO'], $attributes_input);
 echo '</div>';
 echo '</div>';
 
 echo '<div class="form-group">';
 echo form_label('Cargo','',$attributes_label);
 echo '<div class="col-sm-9">';
-echo form_input('TB_CARGO_ID', $funcionario['TB_CARGO_ID']);
+echo form_input('TB_CARGO_ID', $funcionario['TB_CARGO_ID'], $attributes_input);
 echo '</div>';
 echo '</div>';
 

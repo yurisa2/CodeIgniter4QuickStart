@@ -19,7 +19,7 @@ $template = [
 ];
 
 $tabela->setTemplate($template);
-$tabela->setHeading('TB_MARCA_ID', 'TB_MARCA_NOME', 'Alterar', 'Excluir');
+$tabela->setHeading('ID', 'Marca', 'Alterar', 'Excluir');
 
 echo $tabela->generate($marca);
 

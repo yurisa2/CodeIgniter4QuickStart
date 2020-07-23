@@ -175,7 +175,14 @@ class Automovel extends BaseController
 
       $data = $this->request->getPost();
 
-      $modelo->insert($data);
+      // if(is_int((int)$data['TB_AUTOMOVEL_ANO_FAB']) == true)  $modelo->insert($data);
+      // else exit('TB_AUTOMOVEL_ANO_FAB não é inteiro');
+
+      $data['TB_AUTOMOVEL_ANO_FAB'] = (int)$data['TB_AUTOMOVEL_ANO_FAB'];
+
+      // var_dump($data);
+
+      var_dump($modelo->insert($data));
     }
 
     public function update_automovel() {

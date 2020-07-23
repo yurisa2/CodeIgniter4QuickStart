@@ -34,6 +34,11 @@ class AutoModel extends Model
                                 'TB_MODELO_ID'
                               ];
 
+    protected $validationRules = [
+        'TB_AUTOMOVEL_ANO_FAB' => 'required|is_natural_no_zero',
+    ];
+
+
     public function tb_auto_completo() {
       $this->join('tb_marca', 'tb_automovel.TB_MARCA_ID = tb_marca.TB_MARCA_ID', 'inner');
       $this->join('tb_modelo', 'tb_automovel.TB_MODELO_ID = tb_modelo.TB_MODELO_ID', 'inner');

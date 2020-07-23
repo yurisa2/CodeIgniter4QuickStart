@@ -36,7 +36,7 @@ $attributes_label = ['class' => 'col-sm-3 control-label no-padding-right'];
 $attributes_input = ['class' => 'col-xs-10 col-sm-5'];
 
 echo '<div class="form-group">';
-echo form_label('ID:','',$attributes_label,'',$attributes_label);
+echo form_label('ID:','',$attributes_label,'',array_merge($attributes_input, ['readonly' => true]));
 echo '<div class="col-sm-9">';
 echo form_input('TB_LOCACAO_ID', $locacao['TB_LOCACAO_ID'],$attributes_input);
 echo '</div>';

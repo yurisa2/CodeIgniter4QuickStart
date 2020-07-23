@@ -42,7 +42,7 @@ class BaseController extends Controller
 		// E.g.:
     $this->session = \Config\Services::session();
 
-		if($this->session->autenticado == 'false') {
+		if($this->session->autenticado == 'false' || !isset($this->session->autenticado)) {
 			exit("NAO AUTENTICADO");
 		}
 	}

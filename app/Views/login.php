@@ -8,7 +8,7 @@
 
 
 helper('form');
-
+echo 'Conta TESTE -      teste@teste.com  /   teste';
 $attributes = ['class' => 'form-horizontal', 'role' => 'form'];
 echo form_open('login/autentica', $attributes);
 

@@ -27,10 +27,12 @@ class funcionario extends BaseController
     {
         $modelo = new FuncionarioModel;
 
-        $data['funcionario'] = $modelo->findAll();
+        $data['funcionario'] = $modelo->tb_funcionario_completo();
         foreach ($data['funcionario'] as $key => $value) { // Vai passar (iterar) todas as posições do array
           $id = $data['funcionario'][$key]['TB_FUNCIONARIO_ID']; // Pega o ID do passo/registro atual (linha)
           $data['funcionario'][$key]['TB_FUNCIONARIO_ID'] = "ID: ".$id;
+
+          unset($data['funcionario'][$key]['TB_CARGO_ID']);
           // Escreve links
           $link_alterar = "<a href=form_update/$id>Alterar Registro</a>";
           $link_delete = "<a href=delete_cargo/$id>Deletar Registro</a>";

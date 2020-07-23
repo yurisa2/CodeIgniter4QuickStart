@@ -29,12 +29,46 @@ class Locacao extends BaseController
     {
         $modelo = new LocacaoModel;
 
-        $data['locacao'] = $modelo->findAll();
+        $data['locacao'] = $modelo->tb_locacao_completo();
+
+        // echo '<pre>';
+        // var_dump($data['locacao']);
 
         foreach ($data['locacao'] as $key => $value) {
-        'ID: '.$id = $data['locacao'][$key]['TB_LOCACAO_ID'];
-          $data['locacao'][$key]['TB_LOCACAO_ID'] = "ID: ".$id;
+          $id = $data['locacao'][$key]['TB_LOCACAO_ID'];
 
+          unset($data['locacao'][$key]['TB_FUNCIONARIO_ID']);
+          unset($data['locacao'][$key]['TB_AUTOMOVEL_ID']);
+
+          unset($data['locacao'][$key]['TB_CLIENTE_ID']);
+          unset($data['locacao'][$key]['TB_CLIENTE_BAIRRO']);
+          unset($data['locacao'][$key]['TB_CLIENTE_CIDADE']);
+          unset($data['locacao'][$key]['TB_CLIENTE_COMPLEMENTO']);
+          unset($data['locacao'][$key]['TB_CLIENTE_DT_CAD']);
+          unset($data['locacao'][$key]['TB_CLIENTE_DT_NASC']);
+          unset($data['locacao'][$key]['TB_CLIENTE_EMAIL']);
+          unset($data['locacao'][$key]['TB_CLIENTE_ENDERECO']);
+          unset($data['locacao'][$key]['TB_CLIENTE_ID']);
+          unset($data['locacao'][$key]['TB_CLIENTE_SENHA']);
+          unset($data['locacao'][$key]['TB_CLIENTE_SEXO']);
+          unset($data['locacao'][$key]['TB_CLIENTE_TEL']);
+          unset($data['locacao'][$key]['TB_CLIENTE_UF']);
+
+          unset($data['locacao'][$key]['TB_CARGO_ID']);
+          unset($data['locacao'][$key]['TB_FUNCIONARIO_DT_CONTRATO']);
+          unset($data['locacao'][$key]['TB_FUNCIONARIO_ID']);
+          // unset($data['locacao'][$key]['TB_FUNCIONARIO_NOME']);
+          unset($data['locacao'][$key]['TB_FUNCIONARIO_TEL']);
+
+          unset($data['locacao'][$key]['TB_AUTOMOVEL_ANO_FAB']);
+          unset($data['locacao'][$key]['TB_AUTOMOVEL_COR']);
+          unset($data['locacao'][$key]['TB_AUTOMOVEL_ID']);
+          unset($data['locacao'][$key]['TB_AUTOMOVEL_KM']);
+          // unset($data['locacao'][$key]['TB_AUTOMOVEL_NOME']);
+          unset($data['locacao'][$key]['TB_AUTOMOVEL_STATUS']);
+          unset($data['locacao'][$key]['TB_AUTOMOVEL_VALOR_D']);
+          unset($data['locacao'][$key]['TB_MARCA_ID']);
+          unset($data['locacao'][$key]['TB_MODELO_ID']);
 
           $link_alterar = "<a href=form_update/$id>Alterar Registro</a>";
           $link_delete = "<a href=delete_locacao/$id>Deletar Registro</a>";
